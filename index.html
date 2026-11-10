@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NEXCHAT | فضای خصوصی</title>
+<style>
+:root{--bg:#080812;--panel:#111121;--panel2:#19192c;--line:#292941;--purple:#8b5cf6;--purple2:#6d3de0;--text:#f4f1ff;--muted:#a5a2ba}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;background:radial-gradient(circle at 15% 0%,#21143d 0,transparent 32%),var(--bg);color:var(--text);font-family:Tahoma,Arial,sans-serif}
+button,input,textarea{font:inherit}button{cursor:pointer;border:0}
+.wrap{width:min(1050px,94%);margin:35px auto}.brand{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px}.logo{font-size:25px;font-weight:900;letter-spacing:2px}.logo span{color:#a78bfa}.tag{font-size:11px;color:#c4b5fd;border:1px solid #59418a;padding:7px 11px;border-radius:20px}
+.card{background:linear-gradient(145deg,#151528,#0e0e1b);border:1px solid var(--line);border-radius:22px;box-shadow:0 20px 70px #0007}
+.login{max-width:430px;margin:9vh auto;padding:32px}.eyebrow{color:#a78bfa;font-size:11px;letter-spacing:2px}.login h1{font-size:28px;margin:12px 0}.muted{color:var(--muted);line-height:1.9;font-size:13px}
+.field{width:100%;background:#090918;color:white;border:1px solid #33334d;border-radius:12px;padding:14px;outline:none;margin:8px 0 14px}.field:focus{border-color:var(--purple)}
+.primary{background:linear-gradient(110deg,var(--purple2),#a855f7);color:white;border-radius:12px;padding:13px 18px;font-weight:bold;width:100%;box-shadow:0 8px 25px #7c3aed33}
+.note{font-size:11px;color:#85829b;margin-top:17px;line-height:1.8}.hidden{display:none!important}
+.app{display:grid;grid-template-columns:250px 1fr;min-height:680px;overflow:hidden}.side{background:#0d0d1a;border-left:1px solid var(--line);padding:20px}.side h3{font-size:14px;color:#c4b5fd}.user{display:flex;align-items:center;gap:10px;padding:13px;background:#19192b;border-radius:13px;margin:16px 0}.avatar{width:37px;height:37px;border-radius:12px;background:linear-gradient(135deg,#7c3aed,#c084fc);display:grid;place-items:center;font-weight:bold}.user small{display:block;color:var(--muted);margin-top:5px}.nav{width:100%;text-align:right;background:transparent;color:#bcb9d0;padding:12px;border-radius:10px;margin:3px 0}.nav.active,.nav:hover{background:#29203f;color:white}.side .logout{margin-top:25px;border:1px solid #48304d;color:#fda4af}
+.main{display:flex;flex-direction:column;min-width:0}.top{padding:21px 24px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}.top h2{font-size:17px;margin:0}.status{font-size:11px;color:#86efac}.messages{padding:24px;display:flex;flex-direction:column;gap:14px;min-height:480px;max-height:540px;overflow:auto}.msg{max-width:78%;padding:12px 15px;border-radius:15px;background:#202037;align-self:flex-start;line-height:1.8;overflow-wrap:anywhere}.msg.mine{align-self:flex-end;background:#6038a8}.msg .sender{font-size:11px;color:#d8b4fe;margin-bottom:5px}.msg time{display:block;color:#c3bad8;font-size:9px;margin-top:5px}.composer{display:flex;gap:10px;padding:16px 20px;border-top:1px solid var(--line)}.composer input{flex:1;min-width:0;background:#0b0b18;border:1px solid #30304a;border-radius:12px;padding:13px;color:white}.send{background:#7c3aed;color:white;border-radius:12px;padding:0 20px}.switches{display:flex;gap:7px}.switches button{background:#222239;color:#bcb9d0;padding:8px 12px;border-radius:9px;font-size:11px}.switches button.active{background:#653db0;color:white}
+@media(max-width:680px){.wrap{margin:18px auto}.app{grid-template-columns:1fr}.side{border-left:0;border-bottom:1px solid var(--line);padding:12px}.side h3,.user,.logout{display:none}.side nav{display:flex;gap:5px}.nav{width:auto;flex:1;text-align:center;font-size:11px;padding:10px 4px}.app{min-height:calc(100vh - 100px)}.messages{min-height:55vh}.top{padding:16px}.login{margin:12vh auto;padding:25px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="brand"><div class="logo">NEX<span>CHAT</span></div><div class="tag">PRIVATE COMMUNITY</div></header>
+  <section id="login" class="card login">
+    <div class="eyebrow">YOUR PRIVATE SPACE</div><h1>خوش برگشتی 👋</h1>
+    <p class="muted">برای ورود به فضای گفت‌وگوی خصوصی، نام کاربری و رمز ورود را وارد کن.</p>
+    <label class="muted" for="username">نام کاربری</label><input id="username" class="field" maxlength="20" placeholder="مثلاً Alex">
+    <label class="muted" for="password">رمز ورود</label><input id="password" class="field" type="password" placeholder="رمز را وارد کن">
+    <button class="primary" id="loginBtn">ورود به NEXCHAT</button>
+    <p id="error" class="note"></p>
+    <p class="note">رمز ورود را فقط در اختیار افراد مورداعتماد قرار بده.</p>
+  </section>
+  <section id="app" class="card app hidden">
+    <aside class="side">
+      <h3>فضای گفتگو</h3>
+      <div class="user"><div class="avatar" id="avatar">U</div><div><b id="displayName">کاربر</b><small>عضو جامعه</small></div></div>
+      <nav>
+        <button class="nav active" data-room="public">چت عمومی</button>
+        <button class="nav" data-room="private">پیام خصوصی</button>
+      </nav>
+      <button class="nav logout" id="logout">خروج از حساب</button>
+    </aside>
+    <main class="main">
+      <div class="top"><div><h2 id="roomTitle">چت عمومی</h2><div class="status">● فضای آزمایشی</div></div><div class="switches"><button class="active" id="publicBtn">عمومی</button><button id="privateBtn">خصوصی</button></div></div>
+      <div class="messages" id="messages"></div>
+      <form class="composer" id="composer"><input id="messageInput" maxlength="500" placeholder="پیامت رو بنویس..." autocomplete="off"><button class="send" type="submit">ارسال</button></form>
+    </main>
+  </section>
+</div>
+<script>
+const DEMO_PASSWORD = "Doxr@7291";
+const login = document.getElementById('login'), app = document.getElementById('app');
+const messagesEl = document.getElementById('messages');
+let currentUser = '', room = 'public';
+const storeKey = 'nexchat_demo_messages_v1';
+function readMessages(){try{return JSON.parse(localStorage.getItem(storeKey)||'[]')}catch{return []}}
+function saveMessages(items){localStorage.setItem(storeKey,JSON.stringify(items))}
+function enter(){
+ const name=document.getElementById('username').value.trim();
+ const pass=document.getElementById('password').value;
+ const error=document.getElementById('error');
+ if(!name){error.textContent='لطفاً نام کاربری را وارد کن.';return}
+ if(pass!==DEMO_PASSWORD){error.textContent='رمز ورود اشتباه است.';return}
+ currentUser=name;document.getElementById('displayName').textContent=name;
+ document.getElementById('avatar').textContent=name[0].toUpperCase();
+ login.classList.add('hidden');app.classList.remove('hidden');render();
+}
+document.getElementById('loginBtn').addEventListener('click',enter);
+document.getElementById('password').addEventListener('keydown',e=>{if(e.key==='Enter')enter()});
+function setRoom(next){room=next;document.getElementById('roomTitle').textContent=room==='public'?'چت عمومی':'پیام خصوصی';document.querySelectorAll('.nav[data-room]').forEach(b=>b.classList.toggle('active',b.dataset.room===room));document.getElementById('publicBtn').classList.toggle('active',room==='public');document.getElementById('privateBtn').classList.toggle('active',room==='private');render()}
+document.querySelectorAll('[data-room]').forEach(b=>b.addEventListener('click',()=>setRoom(b.dataset.room)));
+document.getElementById('publicBtn').addEventListener('click',()=>setRoom('public'));
+document.getElementById('privateBtn').addEventListener('click',()=>setRoom('private'));
+function render(){
+ messagesEl.innerHTML='';
+ const items=readMessages().filter(m=>m.room===room);
+ if(!items.length){const empty=document.createElement('p');empty.className='muted';empty.textContent=room==='public'?'هنوز پیامی ثبت نشده. اولین پیام رو بفرست!':'این بخش برای نمایش نمونه پیام‌های خصوصی است.';messagesEl.append(empty)}
+ items.forEach(m=>{const box=document.createElement('div');box.className='msg'+(m.user===currentUser?' mine':'');const sender=document.createElement('div');sender.className='sender';sender.textContent=m.user;const body=document.createElement('div');body.textContent=m.text;const time=document.createElement('time');time.textContent=m.time;box.append(sender,body,time);messagesEl.append(box)});
+ messagesEl.scrollTop=messagesEl.scrollHeight;
+}
+document.getElementById('composer').addEventListener('submit',e=>{e.preventDefault();const input=document.getElementById('messageInput');const value=input.value.trim();if(!value)return;const items=readMessages();items.push({user:currentUser,text:value,room,time:new Date().toLocaleTimeString('fa-IR',{hour:'2-digit',minute:'2-digit'})});saveMessages(items);input.value='';render()});
+document.getElementById('logout').addEventListener('click',()=>{currentUser='';app.classList.add('hidden');login.classList.remove('hidden');document.getElementById('password').value=''});
+</script>
+</body>
+</html>
